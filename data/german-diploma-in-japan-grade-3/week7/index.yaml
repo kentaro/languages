@@ -5,7 +5,7 @@ daily_goals:
   - day: 43
     title: "文法総復習（格変化・時制）"
     tasks:
-      - name: "名詞と冠詞の格変化（1格、3格、4格）"
+      - name: "名詞と冠詞の格変化（1格、2格、3格、4格）"
         description: "名詞と冠詞の格変化を復習します。"
       - name: "形容詞の格変化"
         description: "形容詞の格変化パターンを復習します。"
@@ -13,9 +13,11 @@ daily_goals:
         description: "主要な動詞の時制の形と使い方を復習します。"
     grammar:
       - title: "格変化総まとめ表"
-        explanation: "定冠詞・不定冠詞・形容詞・名詞の1格/3格/4格を一覧化して確認します。"
+        explanation: "定冠詞・不定冠詞・形容詞・名詞の1格/2格/3格/4格を一覧化して確認します。"
       - title: "時制チャート"
         explanation: "現在形・過去形・完了形・未来形の使い分けと例文を整理します。"
+      - title: "前置詞早見表"
+        explanation: "2格・3格・4格および両用前置詞をまとめた一覧を参照します。"
     practice:
       - title: "クイックチェック小テスト"
         description: "10問の穴埋め問題（制限時間10分）で格変化と時制を確認します。"
@@ -106,7 +108,7 @@ daily_goals:
         categories:
           - name: "動詞の時制（現在形、過去形、完了形、未来形）"
             mastery_level: "要確認"
-          - name: "格変化（1格、3格、4格）"
+          - name: "格変化（1格、2格、3格、4格）"
             mastery_level: "要確認"
           - name: "冠詞と形容詞の変化"
             mastery_level: "要確認"
