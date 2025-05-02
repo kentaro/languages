@@ -3,6 +3,7 @@
 import { useState, useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { Play, Pause } from "lucide-react";
+import { addBasePath } from "next/dist/client/add-base-path";
 
 interface AudioPlayerProps {
     src: string;
@@ -29,12 +30,11 @@ export function AudioPlayer({ src, label, className }: AudioPlayerProps) {
         setIsPlaying(false);
     };
 
-    const basePath = process.env.NEXT_PUBLIC_BASE_PATH || "";
     return (
         <div className={`flex items-center gap-2 ${className || ""}`}>
             <audio
                 ref={audioRef}
-                src={`${basePath}${src}`}
+                src={addBasePath(src)}
                 onEnded={onEnded}
                 onError={() => console.error(`Error loading audio: ${src}`)}
             />
