@@ -29,11 +29,12 @@ export function AudioPlayer({ src, label, className }: AudioPlayerProps) {
         setIsPlaying(false);
     };
 
+    const basePath = process.env.NEXT_PUBLIC_BASE_PATH || "";
     return (
         <div className={`flex items-center gap-2 ${className || ""}`}>
             <audio
                 ref={audioRef}
-                src={src}
+                src={`${basePath}${src}`}
                 onEnded={onEnded}
                 onError={() => console.error(`Error loading audio: ${src}`)}
             />

@@ -9,6 +9,9 @@ const nextConfig = {
   eslint: {
     ignoreDuringBuilds: true,
   },
+  env: {
+    NEXT_PUBLIC_BASE_PATH: process.env.NODE_ENV === 'production' ? '/languages' : '',
+  },
 }
 
 export default nextConfig;
