@@ -11,6 +11,8 @@ daily_goals:
         description: "関係文の構造と語順を学習します。"
       - name: "1格と4格の関係代名詞"
         description: "1格と4格の関係代名詞の形と使い方を学習します。"
+      - name: "2格（属格）の基本"
+        description: "名詞の2格の形と所有を表す用法、並びに属格関係代名詞を学習します。"
     grammar:
       - title: "関係代名詞と関係文の基本"
         explanation: "関係代名詞は先行詞（名詞）を指し、それに関する情報を追加するために使われます。関係文は副文の一種で、動詞が文末に置かれます。"
@@ -37,6 +39,26 @@ daily_goals:
         examples:
           - "Der Mann, der in Berlin wohnt, ist mein Freund.（ベルリンに住んでいる男性は私の友人です。）"
           - "Das Buch, das ich gestern gekauft habe, ist sehr interessant.（私が昨日買った本はとても面白いです。）"
+      - title: "名詞の格変化（2格の基本）"
+        explanation: "2格（属格 Genitiv）は主に所有・所属を示します。男性・中性名詞では多くの場合語尾に -(e)s が付き、女性名詞・複数形では語尾変化は通常ありません。定冠詞・不定冠詞も変化します。"
+        table:
+          - gender: "男性名詞"
+            nominative: "der"
+            genitive: "des (-s/-es)"
+          - gender: "女性名詞"
+            nominative: "die"
+            genitive: "der"
+          - gender: "中性名詞"
+            nominative: "das"
+            genitive: "des (-s/-es)"
+          - gender: "複数形"
+            nominative: "die"
+            genitive: "der"
+        examples:
+          - "Das Auto des Mannes ist neu. (その男性の車は新しいです。)"
+          - "Die Tasche der Frau ist schön. (その女性のカバンは美しいです。)"
+          - "Der Name eines Kindes ist Max. (ある子供の名前はマックスです。)"
+          - "Die Bücher der Studenten sind alt. (その学生たちの本は古いです。)"
     vocabulary:
       - word: "der Mann"
         pronunciation: "デア マン"

@@ -11,6 +11,14 @@ daily_goals:
         description: "形容詞の格変化パターンを復習します。"
       - name: "動詞の時制（現在、完了、過去、未来）"
         description: "主要な動詞の時制の形と使い方を復習します。"
+    grammar:
+      - title: "格変化総まとめ表"
+        explanation: "定冠詞・不定冠詞・形容詞・名詞の1格/3格/4格を一覧化して確認します。"
+      - title: "時制チャート"
+        explanation: "現在形・過去形・完了形・未来形の使い分けと例文を整理します。"
+    practice:
+      - title: "クイックチェック小テスト"
+        description: "10問の穴埋め問題（制限時間10分）で格変化と時制を確認します。"
 
   - day: 44
     title: "文法総復習（文構造・接続法）"
@@ -23,6 +31,14 @@ daily_goals:
         description: "助動詞の使い方と意味を復習します。"
       - name: "接続法Ⅱ式の基本"
         description: "接続法Ⅱ式の基本的な形と使い方を復習します。"
+    grammar:
+      - title: "副文語順チャート"
+        explanation: "従属節の語順と主節の位置を最終確認します。"
+      - title: "Konjunktiv II 用例"
+        explanation: "接続法Ⅱ式の形を過去形と比較しながら整理します。"
+    practice:
+      - title: "書き換え演習"
+        description: "3文を従属節構造に書き換える練習。"
 
   - day: 45
     title: "語彙総復習と強化"
@@ -33,6 +49,9 @@ daily_goals:
         description: "日常生活、趣味、旅行など、テーマ別に単語を整理して覚えます。"
       - name: "単語学習ツールでの演習"
         description: "AnkiやMemriseなどのツールを活用し、語彙力強化を図ります。（目標2000語レベル）"
+    practice:
+      - title: "テーマ別単語クイズ"
+        description: "ランダム出題20問で語彙をチェック（Quizletリンク）。"
 
   - day: 46
     title: "読解練習と模擬試験①"
@@ -43,6 +62,9 @@ daily_goals:
         description: "試験形式に近い長文を読み、内容理解と時間配分を意識します。"
       - name: "模擬試験（筆記：語彙・文法・読解）"
         description: "模擬試験の筆記パート（語彙・文法・読解）に挑戦し、現状の実力を把握します。"
+    practice:
+      - title: "読解スキミング練習"
+        description: "250語程度の長文でキーワードをマーキングし要旨をつかむ練習。"
 
   - day: 47
     title: "リスニング練習と模擬試験②"
