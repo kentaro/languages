@@ -5,6 +5,7 @@ import { Separator } from "@/components/ui/separator";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { notFound } from "next/navigation";
+import { CourseOverview, WeekData, WeeklyOverviewItem } from "@/types/course";
 
 interface CoursePageParams {
     courseId: string;
@@ -25,7 +26,10 @@ export function generateStaticParams() {
 function loadCourseData(courseId: string) {
     try {
         const { overview, weeks } = getCourseStructure(courseId);
-        return { overview, weeks };
+        return {
+            overview: overview as unknown as CourseOverview,
+            weeks
+        };
     } catch (error) {
         console.error(`Failed to load course data for ${courseId}:`, error);
         return null;
@@ -46,7 +50,7 @@ export default async function CoursePage({ params }: CoursePageProps) {
 
     // 週ごとのデータを週番号でソート
     const sortedWeeks = Object.entries(weeks)
-        .map(([key, data]) => ({ key, ...data } as { key: string; week_number: number; title: string; description: string }))
+        .map(([key, data]) => ({ key, ...data } as WeekData))
         .sort((a, b) => a.week_number - b.week_number);
 
     return (
@@ -92,7 +96,7 @@ export default async function CoursePage({ params }: CoursePageProps) {
                             <h3 className="text-xl font-semibold mb-4">週ごとのカリキュラム</h3>
 
                             <div className="space-y-4">
-                                {sortedWeeks.map((week: any, index: number) => (
+                                {sortedWeeks.map((week: WeekData, index: number) => (
                                     <Card key={index} className="glass overflow-hidden">
                                         <CardHeader className="bg-muted/50">
                                             <CardTitle>
@@ -106,7 +110,7 @@ export default async function CoursePage({ params }: CoursePageProps) {
                                             <div className="mb-4">
                                                 <h4 className="text-lg font-medium mb-2">この週の焦点</h4>
                                                 <ul className="list-disc list-inside space-y-1">
-                                                    {overview.weekly_overview?.find((w: any) => w.week === week.week_number)?.focus?.map((item: string, fIndex: number) => (
+                                                    {overview.weekly_overview?.find((w: WeeklyOverviewItem) => w.week === week.week_number)?.focus?.map((item: string, fIndex: number) => (
                                                         <li key={fIndex}>{item}</li>
                                                     ))}
                                                 </ul>

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import ThemeToggle from "@/components/ThemeToggle";
+import Link from "next/link";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -28,14 +29,18 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        {/* Glassmorphism style nav */}
-        <nav className="sticky top-0 z-50 backdrop-blur-md bg-background/70 shadow-sm">
-          <div className="container mx-auto px-4 py-4 flex justify-between items-center">
-            <a href="/" className="text-xl font-extrabold tracking-tight">Languages</a>
+        <nav className="sticky top-0 z-50 bg-background/90 backdrop-blur-sm border-b">
+          <div className="container mx-auto px-4 py-3 flex justify-between items-center">
+            <Link
+              href="/"
+              className="text-xl font-bold"
+            >
+              Languages
+            </Link>
 
             <div className="flex items-center gap-4">
-              <a href="/" className="hover:text-primary transition-colors">ホーム</a>
-              <a href="/about" className="hover:text-primary transition-colors">サイトについて</a>
+              <Link href="/" className="hover:text-primary transition-colors">ホーム</Link>
+              <Link href="/about" className="hover:text-primary transition-colors">サイトについて</Link>
               <ThemeToggle />
             </div>
           </div>

@@ -6,6 +6,7 @@ import { AudioPlayer } from "@/components/AudioPlayer";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { getCaseLabel } from "@/utils/labels";
+import { CourseOverview, DayContent, ExampleItem, GrammarItem, Task, VocabularyItem, WeekData, WeeklyOverviewItem } from "@/types/course";
 
 interface WeekPageParams {
     courseId: string;
@@ -25,9 +26,9 @@ export function generateStaticParams() {
 function loadWeekData(courseId: string, weekKey: string) {
     const { overview, weeks } = getCourseStructure(courseId);
     return {
-        overview,
+        overview: overview as unknown as CourseOverview,
         weekData:
-            weeks[weekKey] ?? {
+            weeks[weekKey] as unknown as WeekData ?? {
                 week_number: Number(weekKey.replace("week", "")),
                 title: `第${weekKey.replace("week", "")}週`,
                 description: "データがありません",
@@ -69,7 +70,7 @@ export default async function WeekPage({ params }: WeekPageProps) {
                         </TabsList>
 
                         <TabsContent value="daily" className="p-4 border rounded-md mt-2">
-                            {(weekData.daily_goals ?? []).map((day: any, index: number) => (
+                            {(weekData.daily_goals ?? []).map((day: DayContent, index: number) => (
                                 <div key={index} className="mb-8">
                                     <h3 className="text-xl font-semibold mb-4">
                                         第{day.day ?? index + 1}日: {day.title}
@@ -77,7 +78,7 @@ export default async function WeekPage({ params }: WeekPageProps) {
 
                                     <h4 className="text-lg font-medium mb-2">今日の学習目標</h4>
                                     <ul className="list-disc list-inside mb-4">
-                                        {day.tasks?.map((task: any, tIdx: number) => (
+                                        {day.tasks?.map((task: Task, tIdx: number) => (
                                             <li key={tIdx}>
                                                 <span className="font-medium">{task.name}</span> - {task.description}
                                             </li>
@@ -88,7 +89,7 @@ export default async function WeekPage({ params }: WeekPageProps) {
                                     {day.grammar && (
                                         <>
                                             <h4 className="text-lg font-medium mb-2">文法ポイント</h4>
-                                            {day.grammar.map((grammar: any, gIdx: number) => (
+                                            {day.grammar.map((grammar: GrammarItem, gIdx: number) => (
                                                 <div key={gIdx} className="mb-4 p-4 bg-muted/50 rounded-md">
                                                     <h5 className="font-medium mb-2">{grammar.title}</h5>
                                                     {grammar.explanation && <p className="mb-3">{grammar.explanation}</p>}
@@ -105,9 +106,9 @@ export default async function WeekPage({ params }: WeekPageProps) {
                                                                     </tr>
                                                                 </thead>
                                                                 <tbody>
-                                                                    {grammar.table.map((row: any, rIdx: number) => (
+                                                                    {grammar.table.map((row, rIdx: number) => (
                                                                         <tr key={rIdx} className="border-b">
-                                                                            {Object.entries(row).map(([_, value], eIdx) => (
+                                                                            {Object.entries(row).map(([, value], eIdx) => (
                                                                                 <td key={eIdx} className="py-2 pr-4">
                                                                                     {eIdx === 0 ? <span className="font-medium">{String(value)}</span> : <span>{String(value)}</span>}
                                                                                 </td>
@@ -127,7 +128,7 @@ export default async function WeekPage({ params }: WeekPageProps) {
                                         <>
                                             <h4 className="text-lg font-medium mb-2">今日の単語</h4>
                                             <div className="grid grid-cols-1 md:grid-cols-2 gap-2 mb-4">
-                                                {day.vocabulary.map((word: any, wIdx: number) => (
+                                                {day.vocabulary.map((word: VocabularyItem, wIdx: number) => (
                                                     <div key={wIdx} className="p-3 border rounded-md">
                                                         <div className="flex items-start gap-2">
                                                             {word.audio_file && (
@@ -149,7 +150,7 @@ export default async function WeekPage({ params }: WeekPageProps) {
                                         <>
                                             <h4 className="text-lg font-medium mb-2">例文</h4>
                                             <div className="space-y-2 mb-4">
-                                                {day.examples.map((example: any, exIdx: number) => (
+                                                {day.examples.map((example: ExampleItem, exIdx: number) => (
                                                     <div key={exIdx} className="p-3 border rounded-md">
                                                         <div className="flex items-start gap-2">
                                                             {example.audio_file && (
@@ -216,7 +217,7 @@ export default async function WeekPage({ params }: WeekPageProps) {
                         </CardHeader>
                         <CardContent>
                             <ul className="space-y-2">
-                                {overview.weekly_overview?.find((w: any) => w.week === weekNumber)?.focus?.map((f: string, fi: number) => (
+                                {overview.weekly_overview?.find((w: WeeklyOverviewItem) => w.week === weekNumber)?.focus?.map((f: string, fi: number) => (
                                     <li key={fi} className="text-sm">• {f}</li>
                                 )) || <li className="text-sm">データがありません</li>}
                             </ul>

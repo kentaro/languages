@@ -3,7 +3,7 @@ import path from 'path';
 import yaml from 'js-yaml';
 
 export interface YAMLData {
-  [key: string]: any;
+  [key: string]: unknown;
 }
 
 /**
@@ -101,8 +101,8 @@ export function getAvailableCourses(): { id: string; title: string; description:
         
         return {
           id: courseId,
-          title: overview.title || courseId,
-          description: overview.description || '',
+          title: String(overview.title || courseId),
+          description: String(overview.description || ''),
         };
       } catch (error) {
         console.error(`Error loading course info for ${courseId}:`, error);
