@@ -1,36 +1,64 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Languages
 
-## Getting Started
+効率的に外国語を学ぶためのオンライン学習プラットフォーム。Next.js、TypeScript、shadcn/uiを使用した静的サイトです。
 
-First, run the development server:
+## プロジェクト概要
+
+このプロジェクトは、言語学習のための構造化されたコンテンツを提供するウェブアプリケーションです。学習者が体系的に言語を学ぶために必要な文法解説、単語リスト、例文、練習問題などを含みます。
+
+現在は以下のコースが利用可能です：
+
+- **ドイツ語検定3級に50日で合格** - ドイツ語検定3級合格に必要な文法、単語、リスニングなどを網羅した7週間のコース
+
+## 技術スタック
+
+- **フレームワーク**: Next.js 15.3
+- **言語**: TypeScript
+- **CSS**: Tailwind CSS v4
+- **UIコンポーネント**: shadcn/ui
+- **データ形式**: YAML
+- **デプロイ**: GitHub Pages
+
+## ローカル開発
 
 ```bash
+# リポジトリのクローン
+git clone https://github.com/yourusername/languages.git
+cd languages
+
+# 依存関係のインストール
+npm install
+
+# 開発サーバーの起動
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## コンテンツ構造
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+コンテンツはYAMLファイルとして`data`ディレクトリに保存されています：
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```
+data/
+  german-diploma-in-japan-grade-3/
+    overview.yaml  # コース概要
+    week1/
+      index.yaml   # 第1週の詳細
+    week2/
+      index.yaml   # 第2週の詳細
+    ...
+```
 
-## Learn More
+## 新しいコースの追加方法
 
-To learn more about Next.js, take a look at the following resources:
+1. `data`ディレクトリに新しいコースディレクトリを作成（例：`data/spanish-beginner`）
+2. `overview.yaml`ファイルを作成してコース概要を定義
+3. 週ごとのディレクトリを作成し、各`index.yaml`ファイルに詳細なコンテンツを追加
+4. 新しいルートコンポーネントを作成（`src/app/[course-name]/page.tsx`）
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## デプロイ
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+メインブランチへのプッシュ時に、GitHub Actionsが自動的にサイトをビルドし、GitHub Pagesにデプロイします。
 
-## Deploy on Vercel
+## ライセンス
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+MIT

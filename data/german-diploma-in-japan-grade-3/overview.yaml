@@ -1,0 +1,117 @@
+title: "ドイツ語検定3級に50日で合格するための学習プラン"
+description: "本プランはドイツ語検定3級に効率的に合格するために最適化された7週間（50日）の学習スケジュールです。各週ごとに文法、単語、リスニング、リーディングなどの要素をバランスよく学習します。"
+level: "ドイツ語検定3級（CEFR A2相当）"
+duration: "7週間（50日）"
+created_at: "2025-05-01"
+updated_at: "2025-05-01"
+
+exam_info:
+  name: "ドイツ語検定3級"
+  description: "日常生活で使われる基礎的なドイツ語を理解し、簡単な会話ができるレベル。CEFR A2相当。"
+  sections:
+    - name: "筆記試験"
+      duration: "85分"
+      parts:
+        - name: "語彙・文法"
+          questions: 40
+          points: 40
+        - name: "読解"
+          questions: 10
+          points: 40
+        - name: "作文"
+          questions: 1
+          points: 20
+    - name: "聞き取り試験"
+      duration: "約30分"
+      parts:
+        - name: "リスニング"
+          questions: 20
+          points: 100
+  passing_score: "総合点の60%以上"
+
+weekly_overview:
+  - week: 1
+    title: "基礎文法と基本語彙"
+    focus:
+      - "動詞の現在形（規則・不規則）"
+      - "冠詞（定冠詞・不定冠詞）"
+      - "名詞の性と格変化（1格・4格）"
+      - "基本語彙100語"
+    
+  - week: 2
+    title: "文の構造と基本表現"
+    focus:
+      - "名詞の格変化（3格の導入）"
+      - "前置詞（基本的な空間・時間表現）"
+      - "疑問詞と疑問文"
+      - "命令形"
+      - "基本語彙100語"
+    
+  - week: 3
+    title: "動詞の時制と助動詞"
+    focus:
+      - "過去形（完了形と過去形の違い）"
+      - "助動詞（können, müssen, dürfen など）"
+      - "分離動詞"
+      - "未来形"
+      - "基本語彙100語"
+    
+  - week: 4
+    title: "複文と代名詞"
+    focus:
+      - "接続詞（und, aber, oder, denn, sondern）"
+      - "副文（dass, weil, wenn）"
+      - "代名詞（人称代名詞、所有代名詞）"
+      - "形容詞の格変化（基本）"
+      - "基本語彙100語"
+    
+  - week: 5
+    title: "比較と形容詞"
+    focus:
+      - "形容詞の格変化（応用）"
+      - "比較級と最上級"
+      - "副詞の使い方"
+      - "zu不定詞"
+      - "基本語彙100語"
+    
+  - week: 6
+    title: "関係代名詞と接続法"
+    focus:
+      - "関係代名詞と関係文"
+      - "接続法Ⅱ式（基本）"
+      - "受動態（現在形）"
+      - "話法の助動詞"
+      - "復習と語彙強化"
+    
+  - week: 7
+    title: "総復習と試験対策"
+    focus:
+      - "模擬試験演習"
+      - "弱点分野の強化"
+      - "リスニング強化"
+      - "重要文法・語彙の総復習"
+      - "時間配分練習"
+
+resources:
+  textbooks:
+    - title: "独検対策3級問題集"
+      author: "独検対策研究会"
+    - title: "耳が喜ぶドイツ語"
+      author: "浜崎桂子"
+  websites:
+    - name: "Duolingo"
+      url: "https://www.duolingo.com/"
+    - name: "Deutsche Welle"
+      url: "https://learngerman.dw.com/"
+  apps:
+    - name: "Anki"
+      description: "フラッシュカードで単語記憶"
+    - name: "Memrise"
+      description: "ゲーム感覚で単語学習"
+
+tips:
+  - "毎日最低30分は学習時間を確保しましょう。"
+  - "音声を聞きながら発音練習をすることで、リスニング力も向上します。"
+  - "単語カードを作って隙間時間に復習すると効率的です。"
+  - "ドイツ語の記事や簡単な本を読むことで、自然な表現を学べます。"
+  - "ドイツ語の歌や映画を楽しむことで、学習のモチベーションを維持しましょう。" 
