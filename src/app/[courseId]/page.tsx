@@ -6,10 +6,12 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { notFound } from "next/navigation";
 
+interface CoursePageParams {
+    courseId: string;
+}
+
 interface CoursePageProps {
-    params: {
-        courseId: string;
-    };
+    params: Promise<CoursePageParams>;
 }
 
 // 静的ページとして生成するコースIDのリストを提供
@@ -30,8 +32,11 @@ function loadCourseData(courseId: string) {
     }
 }
 
-export default function CoursePage({ params }: CoursePageProps) {
-    const courseData = loadCourseData(params.courseId);
+export default async function CoursePage({ params }: CoursePageProps) {
+    // 非同期でparamsを受け取るため、awaitで待機
+    const { courseId } = await params;
+
+    const courseData = loadCourseData(courseId);
 
     if (!courseData) {
         notFound();
@@ -108,7 +113,7 @@ export default function CoursePage({ params }: CoursePageProps) {
                                             </div>
 
                                             <Button asChild variant="outline" className="w-full mt-2">
-                                                <Link href={`/${params.courseId}/week/${week.week_number}`}>
+                                                <Link href={`/${courseId}/week/${week.week_number}`}>
                                                     詳細を見る →
                                                 </Link>
                                             </Button>
@@ -182,7 +187,7 @@ export default function CoursePage({ params }: CoursePageProps) {
                             <Separator />
 
                             <Button asChild className="w-full">
-                                <Link href={`/${params.courseId}/week/1`}>
+                                <Link href={`/${courseId}/week/1`}>
                                     学習を始める
                                 </Link>
                             </Button>

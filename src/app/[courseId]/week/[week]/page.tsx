@@ -7,8 +7,13 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { getCaseLabel } from "@/utils/labels";
 
+interface WeekPageParams {
+    courseId: string;
+    week: string;
+}
+
 interface WeekPageProps {
-    params: { courseId: string; week: string };
+    params: Promise<WeekPageParams>;
 }
 
 // 今は 1 コース固定なので簡易実装
