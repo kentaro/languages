@@ -14,7 +14,9 @@ const courseArg = process.argv[2]; // 指定があればそのコースだけ処
 // YAMLファイルを読み込む関数
 function loadYAML(filePath: string) {
   try {
-    const fullPath = path.join(process.cwd(), filePath);
+    const fullPath = path.isAbsolute(filePath)
+      ? filePath
+      : path.join(process.cwd(), filePath);
     const fileContents = fs.readFileSync(fullPath, 'utf8');
     return yaml.load(fileContents) as any;
   } catch (error) {
@@ -25,6 +27,10 @@ function loadYAML(filePath: string) {
 
 // TTSで音声を生成する関数
 async function generateAudio(text: string, outputPath: string, voice = 'alloy') {
+  if (typeof text !== 'string' || text.trim() === '') {
+    console.warn(`Skipping audio generation due to invalid or empty text for path: ${outputPath}`);
+    return;
+  }
   try {
     // 既にファイルが存在する場合はスキップ
     if (fs.existsSync(outputPath)) {
@@ -34,7 +40,7 @@ async function generateAudio(text: string, outputPath: string, voice = 'alloy') 
 
     console.log(`Generating audio for: ${text.substring(0, 50)}...`);
     const mp3 = await openai.audio.speech.create({
-      model: 'tts-1',
+      model: 'tts-1-hd',
       voice: voice,
       input: text,
     });
@@ -69,7 +75,7 @@ async function processWeek(coursePath: string, audioBase: string, weekId: string
         if (word.audio_file) {
           await generateAudio(
             word.word,
-            path.join(process.cwd(), outputDir, word.audio_file),
+            path.join(outputDir, word.audio_file),
             'onyx' // ドイツ語の場合は適切な声を選択
           );
         }
@@ -82,7 +88,7 @@ async function processWeek(coursePath: string, audioBase: string, weekId: string
         if (example.audio_file) {
           await generateAudio(
             example.german, // ドイツ語の例文
-            path.join(process.cwd(), outputDir, example.audio_file),
+            path.join(outputDir, example.audio_file),
             'onyx' // ドイツ語の場合は適切な声を選択
           );
         }
@@ -94,7 +100,7 @@ async function processWeek(coursePath: string, audioBase: string, weekId: string
   if (weekData.weekly_review?.audio_file) {
     await generateAudio(
       weekData.weekly_review.final_review?.german || weekData.weekly_review.summary,
-      path.join(process.cwd(), outputDir, weekData.weekly_review.audio_file),
+      path.join(outputDir, weekData.weekly_review.audio_file),
       'onyx'
     );
   }

@@ -5,6 +5,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { AudioPlayer } from "@/components/AudioPlayer";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
+import { getCaseLabel } from "@/utils/labels";
 
 interface WeekPageProps {
     params: { courseId: string; week: string };
@@ -31,11 +32,13 @@ function loadWeekData(courseId: string, weekKey: string) {
     };
 }
 
-export default function WeekPage({ params }: WeekPageProps) {
-    const weekNumber = Number(params.week);
+export default async function WeekPage({ params }: WeekPageProps) {
+    const { courseId, week } = await params;
+
+    const weekNumber = Number(week);
     const weekKey = `week${weekNumber}`;
 
-    const { overview, weekData } = loadWeekData(params.courseId, weekKey);
+    const { overview, weekData } = loadWeekData(courseId, weekKey);
 
     const prevWeek = weekNumber > 1 ? String(weekNumber - 1) : null;
     const nextWeek = weekNumber < 7 ? String(weekNumber + 1) : null;
@@ -44,7 +47,7 @@ export default function WeekPage({ params }: WeekPageProps) {
         <div className="container mx-auto px-4 py-12">
             <header className="mb-8">
                 <div className="flex items-center gap-2 mb-2">
-                    <Link href={`/${params.courseId}`} className="text-sm text-muted-foreground hover:underline">
+                    <Link href={`/${courseId}`} className="text-sm text-muted-foreground hover:underline">
                         ← コース概要に戻る
                     </Link>
                 </div>
@@ -87,6 +90,15 @@ export default function WeekPage({ params }: WeekPageProps) {
                                                     {grammar.table && (
                                                         <div className="overflow-x-auto">
                                                             <table className="w-full border-collapse">
+                                                                <thead>
+                                                                    <tr>
+                                                                        {Object.keys(grammar.table[0] ?? {}).map((key) => (
+                                                                            <th key={key} className="py-2 pr-4 text-left font-semibold">
+                                                                                {key === "gender" ? "" : getCaseLabel(key)}
+                                                                            </th>
+                                                                        ))}
+                                                                    </tr>
+                                                                </thead>
                                                                 <tbody>
                                                                     {grammar.table.map((row: any, rIdx: number) => (
                                                                         <tr key={rIdx} className="border-b">
@@ -114,7 +126,7 @@ export default function WeekPage({ params }: WeekPageProps) {
                                                     <div key={wIdx} className="p-3 border rounded-md">
                                                         <div className="flex items-start gap-2">
                                                             {word.audio_file && (
-                                                                <AudioPlayer src={`/audio/${params.courseId}/week${weekNumber}/${word.audio_file}`} className="mt-1" />
+                                                                <AudioPlayer src={`/audio/${courseId}/week${weekNumber}/${word.audio_file}`} className="mt-1" />
                                                             )}
                                                             <div>
                                                                 <p className="font-medium">{word.word}</p>
@@ -136,7 +148,7 @@ export default function WeekPage({ params }: WeekPageProps) {
                                                     <div key={exIdx} className="p-3 border rounded-md">
                                                         <div className="flex items-start gap-2">
                                                             {example.audio_file && (
-                                                                <AudioPlayer src={`/audio/${params.courseId}/week${weekNumber}/${example.audio_file}`} className="mt-1" />
+                                                                <AudioPlayer src={`/audio/${courseId}/week${weekNumber}/${example.audio_file}`} className="mt-1" />
                                                             )}
                                                             <div>
                                                                 <p className="font-medium">{example.german}</p>
@@ -178,16 +190,16 @@ export default function WeekPage({ params }: WeekPageProps) {
                         </CardHeader>
                         <CardContent className="space-y-4">
                             <Button asChild variant="outline" className="w-full justify-start">
-                                <Link href={`/${params.courseId}`}>コース概要に戻る</Link>
+                                <Link href={`/${courseId}`}>コース概要に戻る</Link>
                             </Button>
                             {prevWeek && (
                                 <Button asChild variant="outline" className="w-full justify-start">
-                                    <Link href={`/${params.courseId}/week/${prevWeek}`}>← 前の週: 第{weekNumber - 1}週</Link>
+                                    <Link href={`/${courseId}/week/${prevWeek}`}>← 前の週: 第{weekNumber - 1}週</Link>
                                 </Button>
                             )}
                             {nextWeek && (
                                 <Button asChild variant="outline" className="w-full justify-start">
-                                    <Link href={`/${params.courseId}/week/${nextWeek}`}>次の週: 第{weekNumber + 1}週 →</Link>
+                                    <Link href={`/${courseId}/week/${nextWeek}`}>次の週: 第{weekNumber + 1}週 →</Link>
                                 </Button>
                             )}
                         </CardContent>
